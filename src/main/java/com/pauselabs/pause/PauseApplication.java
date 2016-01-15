@@ -57,6 +57,7 @@ import com.pauselabs.pause.services.PauseApplicationService;
 import com.pauselabs.pause.services.PauseSessionService;
 import com.squareup.otto.Bus;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -130,6 +131,7 @@ public class PauseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         if (instance == null) {
             // Perform injection
@@ -141,8 +143,8 @@ public class PauseApplication extends Application {
 //                Crashlytics.start(instance);
 //            }
 
-            Crashlytics.getInstance().setDebugMode(true);
-            Crashlytics.start(this);
+//            Crashlytics.getInstance().setDebugMode(true);
+//            Crashlytics.start(this);
 
             ParseObject.registerSubclass(User.class);
             ParseObject.registerSubclass(Feature.class);
